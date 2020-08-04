@@ -7,4 +7,5 @@ It makes most of the methods contained in the Ferram API available for kOS scrip
 
 # Suffixes
 
-aa
+- 'suffix1'
+-'suffix2'
