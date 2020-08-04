@@ -3,6 +3,7 @@
 ## Description
 An addon for the kOS mod for Kerbal Space Program, which provides an interface with the Ferram Aerospace Research (FAR) mod.
 It makes most of the data and methods contained in the Ferram API available for kOS scripts.
+This addon has been tested on KSP 1.8.1 for Windows, with kOS version 1.2.2
 
 
 ## Suffixes
@@ -28,3 +29,6 @@ It is sometimes more intuitive to define the vessel's attitude relative to the a
 This suffix is useful to predict the aerodynamic force in the future given a specific vessel attitude relative to the expected air-relative velocity vector. However, as mentioned, the calculations use the vessel's attitude *right now*, and know nothing of the attitude some time form now. Therefore, once the aerodynamic force is obtained following the steps above, it must be rotated to match the expected conditions. 
 
 
+# Build info
+
+To build the source you will need an IDE or compiler that can open Visual Studio projects and solutions. You may setup a build environment for kOS itself as detailed in its repository, and then paste the '/src' folder included in this mod in the kOS build directory, this way the reference folder paths should match.
