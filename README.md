@@ -6,6 +6,12 @@ It makes most of the data and methods contained in the Ferram API available for 
 This addon has been tested on KSP 1.8.1 for Windows, with kOS version 1.2.2
 
 
+## Installation
+
+- Make sure a kOS and Ferram Aerospace Research installation are present.
+- Just put the main folder inside /GameData
+
+
 ## Suffixes
 
 To access the Ferram data structure the basic command to use is `ADDONS:FAR`, followed by the identifier for the desired structure suffix.
