@@ -1,11 +1,10 @@
 # kOS-Ferram
 
-Tested in KSP 1.7.3, 1.8.1, 1.9.1 with the latest compatible releases of FAR and kOS.
 
 ## Description
 An addon for the kOS mod for Kerbal Space Program, which provides an interface with the Ferram Aerospace Research (FAR) mod.
 It makes most of the data and methods contained in the Ferram API available for kOS scripts.
-This addon has been tested on KSP 1.8.1 for Windows, with kOS version 1.2.2
+Tested in KSP 1.7.3, 1.8.1, 1.9.1 with the latest compatible releases of FAR and kOS.
 
 
 ## Installation
