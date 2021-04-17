@@ -10,8 +10,8 @@ This addon has been tested on KSP 1.8.1 for Windows, with kOS version 1.2.2
 
 ## Installation
 
-- Make sure a kOS and Ferram Aerospace Research installation are present.
-- Just put the main folder inside /GameData
+- Make sure the latest versions of kOS and Ferram Aerospace Research are installed.
+- Just put the kOS-Addons folder inside GameData/
 
 
 ## Suffixes
