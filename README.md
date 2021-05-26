@@ -7,7 +7,7 @@ It makes most of the data and methods contained in the Ferram API available for 
 
 Tested in KSP 1.7.3, 1.8.1, 1.9.1 with the latest compatible releases OF kOS.  
 Compatible with FAR Continued up to 0.16.0.1  
-INCOMPATIBLE with 0.16.0.2
+INCOMPATIBLE with FAR 0.16.0.2
 
 
 ## Installation
