@@ -20,6 +20,7 @@ namespace kOS.AddOns.FARAddon
 		private void InitializeSuffixes()
         {
 		    AddSuffix(new string[] { "IAS" }, new Suffix<ScalarValue>(GetIAS, "Current vessel's Indicated Airspeed."));
+		    AddSuffix(new string[] { "MACH" }, new Suffix<ScalarValue>(GetMach, "Current vessel's Mach number."));
             AddSuffix(new string[] { "CL", "LIFTCOEF" }, new Suffix<ScalarValue>(GetLiftCoef, "Current vessel's Lift Coefficient."));
             AddSuffix(new string[] { "CD", "DRAGCOEF" }, new Suffix<ScalarValue>(GetDragCoef, "Current vessel's Drag Coefficient."));
             AddSuffix(new string[] { "DYNPRES" }, new Suffix<ScalarValue>(GetDynPres, "Current vessel's Dynamic Pressure."));
@@ -29,7 +30,8 @@ namespace kOS.AddOns.FARAddon
             AddSuffix(new string[] { "AOS", "SIDESLIP" }, new Suffix<ScalarValue>(GetSideslip, "Current vessel's sideslip angle relative to the airflow."));
             AddSuffix(new string[] { "AEROFORCEAT" }, new TwoArgsSuffix<Vector, ScalarValue, Vector>(GetAeroForceAt, "Predicted Aerodynamic force given altitude and airspeed vector relative to the vessel."));
             AddSuffix(new string[] { "AEROFORCE" }, new Suffix<Vector>(GetAeroForce,  "Current aerodynamic force being experienced by the vessel."));
-		}
+            AddSuffix(new string[] { "AEROTORQUE" }, new Suffix<Vector>(GetAeroTorque, "Current aerodynamic torque being experienced by the vessel."));
+        }
 
         private ScalarValue GetIAS()
         {
@@ -42,6 +44,19 @@ namespace kOS.AddOns.FARAddon
                     return result;
             }
             throw new KOSUnavailableAddonException("IAS", "Ferram");
+        }
+
+        private ScalarValue GetMach()
+        {
+            if (shared.Vessel != FlightGlobals.ActiveVessel)
+                throw new KOSException("You may only call addons:FAR:MACH from the active vessel.");
+            if (Available())
+            {
+                double? result = shared.Vessel.mach;
+                if (result != null)
+                    return result;
+            }
+            throw new KOSUnavailableAddonException("MACH", "Ferram");
         }
 
         private ScalarValue GetLiftCoef()
@@ -166,7 +181,7 @@ namespace kOS.AddOns.FARAddon
                 throw new KOSException("You may only call addons:FAR:AEROFORCE from the active vessel.");
             if (Available())
             {
-                Vector3? aeroforce = FARWrapper.GetFARAeroForce(shared.Vessel);
+                Vector3? aeroforce = FARWrapper.GetFARAeroForce();
                 if (aeroforce != null)
                 {
                     Vector3 outvector = (Vector3)aeroforce;
@@ -175,12 +190,28 @@ namespace kOS.AddOns.FARAddon
             }
             throw new KOSUnavailableAddonException("AEROFORCE", "Ferram");
         }
-		
-		
 
-		
-		
-		public override BooleanValue Available()
+        private Vector GetAeroTorque()
+        {
+            if (shared.Vessel != FlightGlobals.ActiveVessel)
+                throw new KOSException("You may only call addons:FAR:AEROTORQUE from the active vessel.");
+            if (Available())
+            {
+                Vector3? aerotorque = FARWrapper.GetFARAeroTorque();
+                if (aerotorque != null)
+                {
+                    Vector3 outvector = (Vector3)aerotorque;
+                    return new Vector(outvector.x, outvector.y, outvector.z);
+                }
+            }
+            throw new KOSUnavailableAddonException("AEROTORQUE", "Ferram");
+        }
+
+
+
+
+
+        public override BooleanValue Available()
         {
             return FARWrapper.Wrapped();
         }

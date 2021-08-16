@@ -25,6 +25,7 @@ namespace kOS.AddOns.FARAddon
         private static MethodInfo FARAOA = null;
         private static MethodInfo FARSideslip = null;
         private static MethodInfo FARAeroforce = null;
+        private static MethodInfo FARAerotorque = null;
         private static MethodInfo FARAeropredict = null;
 
 
@@ -108,13 +109,21 @@ namespace kOS.AddOns.FARAddon
                 return;
             }
 
-            FARAeroforce = FARAPIType.GetMethod("VesselAerodynamicForce");
+            FARAeroforce = FARAPIType.GetMethod("ActiveVesselAerodynamicForce");
 			if (FARAeroforce == null)
 			{
-				SafeHouse.Logger.Log("FARAPI.VesselAerodynamicForce method is null.");
+				SafeHouse.Logger.Log("FARAPI.ActiveVesselAerodynamicForce method is null.");
 				wrapped = false;
 				return;
 			}
+
+            FARAerotorque = FARAPIType.GetMethod("ActiveVesselAerodynamicTorque");
+            if (FARAerotorque == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.ActiveVesselAerodynamicForce method is null.");
+                wrapped = false;
+                return;
+            }
 
             FARAeropredict = FARAPIType.GetMethod("CalculateVesselAeroForces",  new Type[] { typeof(Vessel), typeof(Vector3).MakeByRefType(), typeof(Vector3).MakeByRefType(), typeof(Vector3), typeof(double) } );
             if (FARAeroforce == null)
@@ -169,10 +178,15 @@ namespace kOS.AddOns.FARAddon
             return (double?)FARSideslip.Invoke(null, new object[] { });
         }
 
-        public static Vector3? GetFARAeroForce ( Vessel activeship )
+        public static Vector3? GetFARAeroForce ()
 		{
-			return (Vector3?)FARAeroforce.Invoke(null, new object[] { activeship });
+			return (Vector3?)FARAeroforce.Invoke(null, new object[] { });
 		}
+
+        public static Vector3? GetFARAeroTorque()
+        {
+            return (Vector3?)FARAeroforce.Invoke(null, new object[] { });
+        }
 
         public static Vector3d PredictFARAeroForce(Vessel activeship,Vector3d airVelocity, double altitude)
         {
