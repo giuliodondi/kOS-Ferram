@@ -21,6 +21,7 @@ INCOMPATIBLE with FAR 0.16.0.2
 To access the Ferram data structure the basic command to use is `ADDONS:FAR`, followed by the identifier for the desired structure suffix.
 
 - `IAS` - Get - `Scalar` - Returns the current vessel's indicated airspeed in metres per second (m/s).
+- `MACH` - Get - `Scalar` - Returns the current vessel's Mach number.
 - `CL` or `LIFTCOEF` - Get - `Scalar` - Returns the dimensionless current vessel's lift coefficient.
 - `CD` or `DRAGCOEF` - Get - `Scalar` - Returns the dimensionless current vessel's drag coefficient.
 - `DYNPRES` - Get - `Scalar` - Returns the current vessel's dynamic pressure, also known as Q. 
