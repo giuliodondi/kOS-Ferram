@@ -6,8 +6,7 @@ An addon for the kOS mod for Kerbal Space Program, which provides an interface w
 It makes most of the data and methods contained in the Ferram API available for kOS scripts.
 
 Tested in KSP 1.7.3, 1.8.1, 1.9.1 with the latest compatible releases OF kOS.  
-Compatible with FAR Continued up to 0.16.0.1  
-INCOMPATIBLE with FAR 0.16.0.2
+Compatible with FAR Continued up to 0.16.0.1 (Confirmed), tentatively compatible also with 0.16.0.4
 
 
 ## Installation
