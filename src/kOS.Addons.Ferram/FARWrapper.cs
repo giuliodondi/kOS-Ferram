@@ -185,7 +185,7 @@ namespace kOS.AddOns.FARAddon
 
         public static Vector3? GetFARAeroTorque()
         {
-            return (Vector3?)FARAeroforce.Invoke(null, new object[] { });
+            return (Vector3?)FARAerotorque.Invoke(null, new object[] { });
         }
 
         public static Vector3d PredictFARAeroForce(Vessel activeship,Vector3d airVelocity, double altitude)
