@@ -2,10 +2,10 @@
 
 
 ## Description
-An addon for the kOS mod for Kerbal Space Program, which provides an interface with the Ferram Aerospace Research (FAR) mod.
+An addon for the kOS mod for Kerbal Space Program, which provides an interface with the Ferram Aerospace Research (FAR) mod.  
 It makes most of the data and methods contained in the Ferram API available for kOS scripts.
 
-Last tested in KSP 1.12.3 and kOS 1.4.0.0
+Last tested in KSP 1.12.3 and kOS 1.4.0.0  
 Compatible with FAR Continued up to 0.16.1.2  
 Compatible with [my own fork of FAR continued](https://github.com/giuliodondi/Ferram-Aerospace-Research-modded.git)
 
@@ -14,23 +14,29 @@ Compatible with [my own fork of FAR continued](https://github.com/giuliodondi/Fe
 
 - Make sure the latest versions of kOS and Ferram Aerospace Research are installed.
 - Just put the kOS-Addons folder inside GameData/
+- There is a kOS script **kosferramtest.ks** that you can use to test the addon.
 
 
 ## Suffixes
 
-To access the Ferram data structure the basic command to use is `ADDONS:FAR`, followed by the identifier for the desired structure suffix.
+To access the Ferram data structure the basic command to use is `ADDONS:FAR:xxxx`, where xxxx is the identifier of the desired structure suffix.
 
-- `IAS` - Get - `Scalar` - Returns the current vessel's indicated airspeed in metres per second (m/s).
-- `MACH` - Get - `Scalar` - Returns the current vessel's Mach number.
-- `CL` or `LIFTCOEF` - Get - `Scalar` - Returns the dimensionless current vessel's lift coefficient.
-- `CD` or `DRAGCOEF` - Get - `Scalar` - Returns the dimensionless current vessel's drag coefficient.
-- `DYNPRES` - Get - `Scalar` - Returns the current vessel's dynamic pressure, also known as Q. 
-- `REFAREA` - Get - `Scalar` - Returns the current vessel's reference cross-setional area relative to the airflow. The units are presumed to be square metres (m^2).
-- `TERMVEL` - Get - `Scalar` - Returns the current vessel's terminal velocity in metres per second (m/s).
-- `AOA` or `ANGLEOFATTACK` - Get - `Scalar` - Returns the current vessel's angle of attack in degrees (°), the angle between the vessel's forward vector and the air-relative velocity vector projected on the vessel's vertical plane. A positive value indicates the vessel is pointing "above" the velocity vector with respect to the vessel's vertical.
-- `AOS` or `SIDESLIP` - Get - `Scalar` - Returns the current vessel's angle of sideslip in degrees (°), the angle between the vessel's forward vector and the air-relative velocity vector projected on the vessel's horizontal plane. A positive value indicates the vessel is pointing "left" of the velocity vector with respect to the vessel's vertical.
-- `AEROFORCE` - Get - `Vector` - Returns the current vessel's total aerodynamic force in kiloNewtons (kN) in the `SHIP:RAW` frame of reference.
-- `AEROFORCEAT( ALTITUDE (Scalar), VELOCITY (Vector) )` - Get - `Vector` - Invokes a method provided by FAR that predicts the total aerodynamic force in kiloNewtons (kN) that the current vessel would experience given two input parameters:  `ALTITUDE` relative to the body's sea level datum and `VELOCITY` relative to the air in the `SHIP:RAW` frame of reference.
+- `IAS` - Get - `Scalar` - Returns the vessel's indicated airspeed in metres per second (m/s).
+- `MACH` - Get - `Scalar` - Returns the vessel's Mach number.
+- `CL` or `LIFTCOEF` - Get - `Scalar` - Returns the dimensionless vessel's lift coefficient.
+- `CD` or `DRAGCOEF` - Get - `Scalar` - Returns the dimensionless vessel's drag coefficient.
+- `DYNPRES` - Get - `Scalar` - Returns the vessel's dynamic pressure, also known as Q. 
+- `REFAREA` - Get - `Scalar` - Returns the vessel's reference cross-setional area relative to the airflow. The units are presumed to be square metres (m^2).
+- `TERMVEL` - Get - `Scalar` - Returns the vessel's terminal velocity in metres per second (m/s).
+- `AOA` or `ANGLEOFATTACK` - Get - `Scalar` - Returns the vessel's angle of attack in degrees (°), the angle between the vessel's forward vector and the air-relative velocity vector projected on the vessel's vertical plane. A positive value indicates the vessel is pointing "above" the velocity vector with respect to the vessel's vertical.
+- `AOS` or `SIDESLIP` - Get - `Scalar` - Returns the vessel's angle of sideslip in degrees (°), the angle between the vessel's forward vector and the air-relative velocity vector projected on the vessel's horizontal plane. A positive value indicates the vessel is pointing "left" of the velocity vector with respect to the vessel's vertical.
+- `AEROFORCE` - Get - `Vector` - Returns the vessel's total aerodynamic force in kiloNewtons (kN) in the `SHIP:RAW` frame of reference.
+- `AEROFORCEAT( ALTITUDE (Scalar), VELOCITY (Vector) )` - Get - `Vector` - Invokes a method provided by FAR that predicts the total aerodynamic force in kiloNewtons (kN) that the vessel would experience given two input parameters:  `ALTITUDE` relative to the body's sea level datum and `VELOCITY` relative to the air in the `SHIP:RAW` frame of reference.
+
+### About vessels
+
+The addon now supports non-active vessels, meaning that it can be used in a script running on a kOS CPU other than the one on the active vessel.  
+I've only done some shallow preliminary testing on this, I welcome bug reports on this
 
 ## About the `AEROFORCEAT` Suffix
 
