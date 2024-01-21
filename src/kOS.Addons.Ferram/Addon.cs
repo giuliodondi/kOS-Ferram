@@ -35,11 +35,9 @@ namespace kOS.AddOns.FARAddon
 
         private ScalarValue GetIAS()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:IAS from the active vessel.");
             if (Available())
             {
-                double? result = FARWrapper.GetFARIAS();
+                double? result = FARWrapper.GetVesselFARIAS(shared.Vessel);
                 if (result != null)
                     return result;
             }
@@ -48,8 +46,6 @@ namespace kOS.AddOns.FARAddon
 
         private ScalarValue GetMach()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:MACH from the active vessel.");
             if (Available())
             {
                 double? result = shared.Vessel.mach;
@@ -61,11 +57,9 @@ namespace kOS.AddOns.FARAddon
 
         private ScalarValue GetLiftCoef()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:LIFTCOEF from the active vessel.");
             if (Available())
             {
-                double? result = FARWrapper.GetFARLiftCoef();
+                double? result = FARWrapper.GetVesselFARLiftCoef(shared.Vessel);
                 if (result != null)
                     return result;
             }
@@ -74,11 +68,9 @@ namespace kOS.AddOns.FARAddon
 
         private ScalarValue GetDragCoef()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:DRAGCOEF from the active vessel.");
             if (Available())
             {
-                double? result = FARWrapper.GetFARDragCoef();
+                double? result = FARWrapper.GetVesselFARDragCoef(shared.Vessel);
                 if (result != null)
                     return result;
             }
@@ -87,11 +79,9 @@ namespace kOS.AddOns.FARAddon
 
         private ScalarValue GetDynPres()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:DYNPRES from the active vessel.");
             if (Available())
             {
-                double? result = FARWrapper.GetFARDynPres();
+                double? result = FARWrapper.GetVesselFARDynPres(shared.Vessel);
                 if (result != null)
                     return result;
             }
@@ -100,11 +90,9 @@ namespace kOS.AddOns.FARAddon
 
         private ScalarValue GetRefArea()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:REFAREA from the active vessel.");
             if (Available())
             {
-                double? result = FARWrapper.GetFARRefArea();
+                double? result = FARWrapper.GetVesselFARRefArea(shared.Vessel);
                 if (result != null)
                     return result;
             }
@@ -113,11 +101,9 @@ namespace kOS.AddOns.FARAddon
 
         private ScalarValue  GetTermVel()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:TERMVEL from the active vessel.");
             if (Available())
             {
-                double? result = FARWrapper.GetFARTermVel();
+                double? result = FARWrapper.GetVesselFARTermVel(shared.Vessel);
                 if (result != null)
                     return result;
             }
@@ -126,11 +112,9 @@ namespace kOS.AddOns.FARAddon
 
         private ScalarValue  GetAOA()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:AOA from the active vessel.");
             if (Available())
             {
-                double? result = FARWrapper.GetFARAOA();
+                double? result = FARWrapper.GetVesselFARAOA(shared.Vessel);
                 if (result != null)
                     return result;
             }
@@ -139,11 +123,9 @@ namespace kOS.AddOns.FARAddon
 
         private ScalarValue GetSideslip()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:AOS from the active vessel.");
             if (Available())
             {
-                double? result = FARWrapper.GetFARSideslip();
+                double? result = FARWrapper.GetVesselFARSideslip(shared.Vessel);
                 if (result != null)
                     return result;
             }
@@ -152,8 +134,6 @@ namespace kOS.AddOns.FARAddon
 
         private Vector GetAeroForceAt(ScalarValue altitude, Vector Velocity)
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:AEROFORCEAT from the active vessel.");
             if (Available())
             {
                 Vector3d airVelocity = Velocity.ToVector3D();
@@ -177,11 +157,9 @@ namespace kOS.AddOns.FARAddon
 
         private Vector GetAeroForce()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:AEROFORCE from the active vessel.");
             if (Available())
             {
-                Vector3? aeroforce = FARWrapper.GetFARAeroForce();
+                Vector3? aeroforce = FARWrapper.GetVesselFARAeroForce(shared.Vessel);
                 if (aeroforce != null)
                 {
                     Vector3 outvector = (Vector3)aeroforce;
@@ -193,11 +171,9 @@ namespace kOS.AddOns.FARAddon
 
         private Vector GetAeroTorque()
         {
-            if (shared.Vessel != FlightGlobals.ActiveVessel)
-                throw new KOSException("You may only call addons:FAR:AEROTORQUE from the active vessel.");
             if (Available())
             {
-                Vector3? aerotorque = FARWrapper.GetFARAeroTorque();
+                Vector3? aerotorque = FARWrapper.GetVesselFARAeroForce(shared.Vessel);
                 if (aerotorque != null)
                 {
                     Vector3 outvector = (Vector3)aerotorque;

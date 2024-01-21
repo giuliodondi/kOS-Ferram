@@ -16,6 +16,7 @@ namespace kOS.AddOns.FARAddon
 	{
 		private static bool? wrapped = null;
 		private static Type FARAPIType = null;
+
 		private static MethodInfo FARIAS = null;	
         private static MethodInfo FARCL = null;
         private static MethodInfo FARCD = null;
@@ -26,6 +27,18 @@ namespace kOS.AddOns.FARAddon
         private static MethodInfo FARSideslip = null;
         private static MethodInfo FARAeroforce = null;
         private static MethodInfo FARAerotorque = null;
+
+        private static MethodInfo VesselFARIAS = null;
+        private static MethodInfo VesselFARCL = null;
+        private static MethodInfo VesselFARCD = null;
+        private static MethodInfo VesselFARDynPres = null;
+        private static MethodInfo VesselFARREfArea = null;
+        private static MethodInfo VesselFARTermVel = null;
+        private static MethodInfo VesselFARAOA = null;
+        private static MethodInfo VesselFARSideslip = null;
+        private static MethodInfo VesselFARAeroforce = null;
+        private static MethodInfo VesselFARAerotorque = null;
+
         private static MethodInfo FARAeropredict = null;
 
 
@@ -44,6 +57,7 @@ namespace kOS.AddOns.FARAddon
                 wrapped = false; 
             }
 			
+            //active vessel methods
 			
 			FARIAS = FARAPIType.GetMethod("ActiveVesselIAS");
 			if (FARIAS == null)
@@ -125,6 +139,88 @@ namespace kOS.AddOns.FARAddon
                 return;
             }
 
+            //generic vessel methods 
+
+            VesselFARIAS = FARAPIType.GetMethod("VesselIAS");
+            if (FARIAS == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.VesselIAS method is null.");
+                wrapped = false;
+                return;
+            }
+
+            VesselFARCL = FARAPIType.GetMethod("VesselLiftCoeff");
+            if (FARCL == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.VesselLiftCoeff method is null.");
+                wrapped = false;
+                return;
+            }
+
+            VesselFARCD = FARAPIType.GetMethod("VesselDragCoeff");
+            if (FARCD == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.VesselDragCoeff method is null.");
+                wrapped = false;
+                return;
+            }
+
+            VesselFARDynPres = FARAPIType.GetMethod("VesselDynPres");
+            if (FARDynPres == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.VesselDynPres method is null.");
+                wrapped = false;
+                return;
+            }
+
+            VesselFARREfArea = FARAPIType.GetMethod("VesselRefArea");
+            if (FARREfArea == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.VesselRefArea method is null.");
+                wrapped = false;
+                return;
+            }
+
+            VesselFARTermVel = FARAPIType.GetMethod("VesselTermVelEst");
+            if (FARTermVel == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.VesselTermVelEst method is null.");
+                wrapped = false;
+                return;
+            }
+
+            VesselFARAOA = FARAPIType.GetMethod("VesselAoA");
+            if (FARAOA == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.VesselAoA method is null.");
+                wrapped = false;
+                return;
+            }
+
+            VesselFARSideslip = FARAPIType.GetMethod("VesselSideslip");
+            if (FARSideslip == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.VesselSideslip method is null.");
+                wrapped = false;
+                return;
+            }
+
+            VesselFARAeroforce = FARAPIType.GetMethod("VesselAerodynamicForce");
+            if (FARAeroforce == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.VesselAerodynamicForce method is null.");
+                wrapped = false;
+                return;
+            }
+
+            VesselFARAerotorque = FARAPIType.GetMethod("VesselAerodynamicTorque");
+            if (FARAerotorque == null)
+            {
+                SafeHouse.Logger.Log("FARAPI.VesselAerodynamicTorque method is null.");
+                wrapped = false;
+                return;
+            }
+
             FARAeropredict = FARAPIType.GetMethod("CalculateVesselAeroForces",  new Type[] { typeof(Vessel), typeof(Vector3).MakeByRefType(), typeof(Vector3).MakeByRefType(), typeof(Vector3), typeof(double) } );
             if (FARAeroforce == null)
             {
@@ -188,6 +284,59 @@ namespace kOS.AddOns.FARAddon
             return (Vector3?)FARAerotorque.Invoke(null, new object[] { });
         }
 
+
+        public static double? GetVesselFARIAS(Vessel activeship)
+        {
+            return (double?)VesselFARIAS.Invoke(null, new object[] {activeship });
+        }
+
+        public static double? GetVesselFARLiftCoef(Vessel activeship)
+        {
+            return (double?)VesselFARCL.Invoke(null, new object[] {activeship });
+        }
+
+        public static double? GetVesselFARDragCoef(Vessel activeship)
+        {
+            return (double?)VesselFARCD.Invoke(null, new object[] {activeship });
+        }
+
+        public static double? GetVesselFARDynPres(Vessel activeship)
+        {
+            return (double?)VesselFARDynPres.Invoke(null, new object[] {activeship });
+        }
+
+        public static double? GetVesselFARRefArea(Vessel activeship)
+        {
+            return (double?)VesselFARREfArea.Invoke(null, new object[] {activeship });
+        }
+
+        public static double? GetVesselFARTermVel(Vessel activeship)
+        {
+            return (double?)VesselFARTermVel.Invoke(null, new object[] {activeship });
+        }
+
+        public static double? GetVesselFARAOA(Vessel activeship)
+        {
+            return (double?)VesselFARAOA.Invoke(null, new object[] { activeship });
+        }
+
+        public static double? GetVesselFARSideslip(Vessel activeship)
+        {
+            return (double?)VesselFARSideslip.Invoke(null, new object[] { activeship });
+        }
+
+        public static Vector3? GetVesselFARAeroForce(Vessel activeship)
+        {
+            return (Vector3?)VesselFARAeroforce.Invoke(null, new object[] {activeship});
+        }
+
+        public static Vector3? GetVesselFARAeroTorque(Vessel activeship)
+        {
+            return (Vector3?)VesselFARAerotorque.Invoke(null, new object[] {activeship});
+        }
+
+
+  
         public static Vector3d PredictFARAeroForce(Vessel activeship,Vector3d airVelocity, double altitude)
         {
 
